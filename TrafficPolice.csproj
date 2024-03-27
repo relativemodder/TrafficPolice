@@ -10,18 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\Roboto\Roboto-Black.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-BlackItalic.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-Bold.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-BoldItalic.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-Italic.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-Light.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-LightItalic.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-Medium.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-MediumItalic.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-Regular.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-Thin.ttf" />
-    <None Remove="Fonts\Roboto\Roboto-ThinItalic.ttf" />
     <None Remove="Images\logo.png" />
   </ItemGroup>
 
@@ -36,18 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Fonts\Roboto\Roboto-Black.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-BlackItalic.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-Bold.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-BoldItalic.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-Italic.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-Light.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-LightItalic.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-Medium.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-MediumItalic.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-Regular.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-Thin.ttf" />
-    <Resource Include="Fonts\Roboto\Roboto-ThinItalic.ttf" />
     <Resource Include="Images\logo.png" />
   </ItemGroup>
 
