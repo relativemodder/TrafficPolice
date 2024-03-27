@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using SQLite;
-using System.Threading.Tasks;
 using System.IO;
-using System.Windows;
-using System.Reflection;
-using System.Windows.Controls;
 using System.Security.Cryptography;
+using System.Windows.Controls;
+using System.Windows;
+using System.Diagnostics;
 
 namespace TrafficPolice
 {
     public class TrafficPoliceDB
     {
+        private const string defaultUsername = "inspector";
+        private const string defaultPassword = "inspector";
+        private const int loginMaxAttempts = 3;
+        private const int loginCooldown = 60; // in seconds
+
         private static SQLiteConnection? _instance;
+        private static Random rnd = new Random();
 
         public static SQLiteConnection GetSQLiteConnection()
         {
@@ -31,6 +33,7 @@ namespace TrafficPolice
 
                 db.CreateTable<DriverModel>();
                 db.CreateTable<InspectorModel>();
+                db.CreateTable<LoginAttempt>();
 
                 _instance = db;
             }
@@ -38,9 +41,86 @@ namespace TrafficPolice
             return _instance;
         }
 
+        public static void CreateDefaultUser()
+        {
+            try
+            {
+                GetSQLiteConnection().Insert(new InspectorModel()
+                {
+                    Guid = GenerateGuid(),
+                    Username = defaultUsername,
+                    Password = HashPassword(defaultPassword)
+                });
+            }
+            catch (SQLiteException)
+            {
+                Debug.WriteLine($"User already exists, no need to insert.");
+            }
+        }
+
         public static string HashPassword(string password)
         {
             return Convert.ToHexString(SHA1.HashData(Encoding.UTF8.GetBytes(password))).ToLower();
+        }
+
+        public static bool VerifyPassword(string hash, string password)
+        {
+            return HashPassword(password) == hash;
+        }
+
+        public static long GetUnixTimestamp()
+        {
+            long unixTimestamp = (long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            return unixTimestamp;
+        }
+
+        public static int GenerateGuid()
+        {
+            return rnd.Next(111111111, 999999999);
+        }
+
+        public static int Login(string username, string password)
+        {
+            var db = GetSQLiteConnection();
+
+            var deltaTime = GetUnixTimestamp() - loginCooldown;
+
+            var attemptsQuery = db.Table<LoginAttempt>().Where(attempt => attempt.Timestamp > deltaTime);
+            
+            if (attemptsQuery.Count() > loginMaxAttempts)
+            {
+                var lastAttempt = attemptsQuery.LastOrDefault();
+                long remainingTime = lastAttempt.Timestamp + loginCooldown - GetUnixTimestamp();
+                throw new LoginExceptions.CooldownException() { RemainingTime = (int)remainingTime };
+            }
+
+            var userQuery = db.Table<InspectorModel>().Where(inspector => inspector.Username == username);
+            var user = userQuery.FirstOrDefault();
+
+            var attemptGuid = GenerateGuid();
+
+            var insertedAttempt = db.Insert(new LoginAttempt()
+            {
+                Id = attemptGuid,
+                Timestamp = GetUnixTimestamp()
+            });
+
+
+            if (user == null)
+            {
+                throw new LoginExceptions.IncorrectUsernameOrPasswordException();
+            }
+
+
+            if (VerifyPassword(user.Password, password) == false)
+            {
+                throw new LoginExceptions.IncorrectUsernameOrPasswordException();
+            }
+
+            db.Delete<LoginAttempt>(attemptGuid);
+            db.Commit();
+
+            return user.Guid;
         }
     }
 }

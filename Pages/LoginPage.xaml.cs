@@ -12,29 +12,27 @@ namespace TrafficPolice
             InitializeComponent();
         }
 
-        private void ShowLoginError()
-        {
-            App.GetNotifierInstance().ShowError("Неверный логин или пароль!");
-        }
-
         private void Login()
         {
-            var db = TrafficPoliceDB.GetSQLiteConnection();
-            var query = db.Table<InspectorModel>().Where(inspector => inspector.Username == usernameTextBox.Text);
-
-            var result = query.FirstOrDefault();
-
-            if (result == null)
+            try
             {
-                ShowLoginError();
+                App.CurrentUserID = TrafficPoliceDB.Login(usernameTextBox.Text, passwordBox.Password);
+            }
+
+            catch (LoginExceptions.IncorrectUsernameOrPasswordException)
+            {
+                App.GetNotifierInstance().ShowError("Неверный логин или пароль!");
                 return;
             }
 
-            var passwordHash = TrafficPoliceDB.HashPassword(passwordBox.Password);
-
-            if (result.Password != passwordHash)
+            catch (LoginExceptions.CooldownException cooldown)
             {
-                ShowLoginError();
+                App.GetNotifierInstance()
+                    .ShowError(
+                        "Вы неправильно ввели логин/пароль 3 раза. " 
+                        + $"Повторите попытку через {cooldown.RemainingTime} сек."
+                    );
+                return;
             }
 
             var mainPage = new MainPage();

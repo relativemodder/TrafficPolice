@@ -3,18 +3,27 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Position;
 using ToastNotifications.Messages;
+using SQLite;
+using System.Diagnostics;
 
 namespace TrafficPolice
 {
     public partial class App : Application
     {
+        public static int CurrentUserID = 0;
+
+        private static Notifier? _notifierInstance;
+
         private void Application_onStartup(object sender, StartupEventArgs e)
         {
-            TrafficPoliceDB.GetSQLiteConnection();
+            var db = TrafficPoliceDB.GetSQLiteConnection();
+            TrafficPoliceDB.CreateDefaultUser();
         }
 
         public static Notifier GetNotifierInstance()
         {
+            if (_notifierInstance != null) return _notifierInstance;
+
             Notifier notifier = new Notifier(cfg =>
             {
                 cfg.PositionProvider = new WindowPositionProvider(
@@ -30,7 +39,9 @@ namespace TrafficPolice
                 cfg.Dispatcher = Current.Dispatcher;
             });
 
-            return notifier;
+            _notifierInstance = notifier;
+
+            return _notifierInstance;
         }
     }
 

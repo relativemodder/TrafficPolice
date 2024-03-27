@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrafficPolice"
         mc:Ignorable="d"
-        Title="Панель ГИБДД" Height="450" Width="800" Left="500" Top="300">
+        Title="Панель ГИБДД" Height="450" Width="800" Left="500" Top="300" KeyDown="onKeyDown" MouseDown="onMouseDown">
     <Grid>
         <Frame NavigationUIVisibility="Hidden" x:Name="navFrame" />
     </Grid>
