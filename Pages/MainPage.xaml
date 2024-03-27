@@ -6,9 +6,25 @@
       xmlns:local="clr-namespace:TrafficPolice"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      Title="MainPage" Background="White" Loaded="MainPage_Loaded">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" MaxHeight="70"></RowDefinition>
+            <RowDefinition Height="41*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="reloadBtn" Grid.Column="0" Margin="10,10,10,10" MaxWidth="170" MaxHeight="70" FontSize="18" Click="reloadBtn_onClick">Перезагрузить</Button>
+            <TextBlock Grid.Column="1" Foreground="Black" Text="Водители" FontSize="24" VerticalAlignment="Center" TextAlignment="Center" />
+            <Button x:Name="createDriverBtn" Grid.Column="2" Margin="10,10,10,10" MaxWidth="170" MaxHeight="70" FontSize="18" Click="createDriverBtn_onClick">Создать</Button>
+        </Grid>
+        <ListView x:Name="driversListView" Grid.Row="1" HorizontalContentAlignment="Stretch">
+            
+        </ListView>
     </Grid>
 </Page>

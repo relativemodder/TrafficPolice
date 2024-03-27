@@ -2,8 +2,6 @@
 using SQLite;
 using System.IO;
 using System.Security.Cryptography;
-using System.Windows.Controls;
-using System.Windows;
 using System.Diagnostics;
 
 namespace TrafficPolice
@@ -16,6 +14,7 @@ namespace TrafficPolice
         private const int loginCooldown = 60; // in seconds
 
         private static SQLiteConnection? _instance;
+        private static SQLiteAsyncConnection? _asyncInstance;
         private static Random rnd = new Random();
 
         public static SQLiteConnection GetSQLiteConnection()
@@ -31,6 +30,7 @@ namespace TrafficPolice
 
                 var db = new SQLiteConnection(databasePath);
 
+                db.CreateTable<PhotoModel>();
                 db.CreateTable<DriverModel>();
                 db.CreateTable<InspectorModel>();
                 db.CreateTable<LoginAttempt>();
@@ -39,6 +39,15 @@ namespace TrafficPolice
             }
 
             return _instance;
+        }
+
+        public static List<DriverModel> GetDrivers()
+        {
+            var conn = GetSQLiteConnection();
+            var query = conn.Table<DriverModel>();
+
+            var driversList = query.ToList();
+            return driversList;
         }
 
         public static void CreateDefaultUser()
@@ -56,6 +65,18 @@ namespace TrafficPolice
             {
                 Debug.WriteLine($"User already exists, no need to insert.");
             }
+        }
+
+        public static void UploadPhoto(PhotoModel photo)
+        {
+            var db = GetSQLiteConnection();
+            db.Insert(photo);
+        }
+
+        public static void InsertDriver(DriverModel driver)
+        {
+            var db = GetSQLiteConnection();
+            db.Insert(driver);
         }
 
         public static string HashPassword(string password)

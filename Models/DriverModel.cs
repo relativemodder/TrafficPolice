@@ -4,7 +4,7 @@ namespace TrafficPolice
 {
     public class DriverModel
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public int Guid { get; set; }
 
         [NotNull]
@@ -36,8 +36,13 @@ namespace TrafficPolice
         public string Email { get; set; }
 
         [NotNull]
-        public byte[] Photo { get; set; }
+        public int PhotoId { get; set; }
 
         public string? Notes { get; set; }
+
+        public override string ToString()
+        {
+            return $"№{Guid} {Surname} {Name} {MiddleName}";
+        }
     }
 }

@@ -7,22 +7,32 @@ namespace TrafficPolice
 {
     public partial class LoginPage : Page
     {
+        private const int defaultUserId = 208342350; // DONT DO LIKE THAT IN REAL PROJECTS PLEASE
+        private const bool skipLogin = true;
+
         public LoginPage()
         {
             InitializeComponent();
+        }
+
+        private void AfterLogin(int userId)
+        {
+            App.CurrentUserID = userId;
+
+            var mainPage = new MainPage();
+            MainWindow.GetNavigationFrame().Content = mainPage;
         }
 
         private void Login()
         {
             try
             {
-                App.CurrentUserID = TrafficPoliceDB.Login(usernameTextBox.Text, passwordBox.Password);
+                AfterLogin(TrafficPoliceDB.Login(usernameTextBox.Text, passwordBox.Password));
             }
 
             catch (LoginExceptions.IncorrectUsernameOrPasswordException)
             {
                 App.GetNotifierInstance().ShowError("Неверный логин или пароль!");
-                return;
             }
 
             catch (LoginExceptions.CooldownException cooldown)
@@ -32,11 +42,7 @@ namespace TrafficPolice
                         "Вы неправильно ввели логин/пароль 3 раза. " 
                         + $"Повторите попытку через {cooldown.RemainingTime} сек."
                     );
-                return;
             }
-
-            var mainPage = new MainPage();
-            MainWindow.GetNavigationFrame().Content = mainPage;
         }
 
         private void passwordBox_onKeyDown(object sender, KeyEventArgs e)
@@ -50,6 +56,14 @@ namespace TrafficPolice
         private void loginButton_onClick(object sender, RoutedEventArgs e)
         {
             Login();
+        }
+
+        private void loginPage_loaded(object sender, RoutedEventArgs e)
+        {
+            if (skipLogin)
+            {
+                AfterLogin(defaultUserId);
+            }
         }
     }
 }
