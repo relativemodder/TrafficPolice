@@ -1,12 +1,12 @@
-﻿<Window x:Class="TrafficPolice.MainWindow"
+﻿<Window x:Class="TrafficPolice.ViewDriverWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrafficPolice"
         mc:Ignorable="d"
-        Title="Панель ГИБДД" Height="557" Width="890" Left="500" Top="300" KeyDown="onKeyDown" MouseDown="onMouseDown">
+        Title="Водитель" Height="450" Width="800">
     <Grid>
-        <Frame NavigationUIVisibility="Hidden" x:Name="navFrame" />
+        
     </Grid>
 </Window>

@@ -108,6 +108,12 @@ namespace TrafficPolice
                 validationError = true;
             }
 
+            if (w.Email.Text.Contains('@') == false)
+            {
+                w.GetNotifierInstance().ShowError("Поле \"E-mail\" не заполнено правильно!");
+                validationError = true;
+            }
+
             if (w.Photo.Text == string.Empty)
             {
                 w.GetNotifierInstance().ShowError("Выберите фотографию!");
@@ -149,10 +155,7 @@ namespace TrafficPolice
 
             w.Close();
 
-            var element = AddDriverToListView(driver);
-            driversListView.SelectedItem = driver;
-            driversListView.SelectedIndex = driversListView.Items.Count - 1;
-            element.Focus();
+            ReloadDriversList();
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
