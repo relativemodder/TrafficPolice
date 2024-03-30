@@ -59,5 +59,15 @@ namespace TrafficPolice.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] empty_db {
+            get {
+                object obj = ResourceManager.GetObject("empty_db", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

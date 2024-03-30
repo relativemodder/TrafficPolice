@@ -22,10 +22,12 @@ namespace TrafficPolice
             if (_instance == null)
             {
                 var databasePath = Path.Combine(Environment.CurrentDirectory, "db.sqlite");
+                var emptyDatabasePath = Path.Combine(Environment.CurrentDirectory, "empty_db.sqlite");
 
                 if (!File.Exists(databasePath))
                 {
-                    File.Create(databasePath);
+                    File.Copy(emptyDatabasePath, databasePath);
+                    File.Delete(emptyDatabasePath);
                 }
 
                 var db = new SQLiteConnection(databasePath);
