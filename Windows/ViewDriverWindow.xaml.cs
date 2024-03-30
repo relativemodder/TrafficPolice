@@ -133,5 +133,18 @@ namespace TrafficPolice
 
             LoadDriverFromData(Driver);
         }
+
+        private void deleteDriverBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Вы действительно хотите удалить этого пользователя?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            
+            if (result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            TrafficPoliceDB.DeleteDriver(Driver);
+            Close();
+        }
     }
 }

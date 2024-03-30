@@ -56,6 +56,12 @@ namespace TrafficPolice
             conn.Update(driver);
         }
 
+        public static void DeleteDriver(DriverModel driver)
+        {
+            var conn = GetSQLiteConnection();
+            conn.Delete(driver);
+        }
+
         public static void CreateDefaultUser()
         {
             try

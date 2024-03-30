@@ -126,7 +126,13 @@
             </Grid>
         </ScrollViewer>
         <Grid Grid.Row="1">
-            <Button x:Name="saveDriverBtn" HorizontalAlignment="Right" Width="200" Margin="0,10,10,10" Click="saveDriverBtn_Click">Сохранить</Button>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" x:Name="deleteDriverBtn" Margin="10,10,10,10" Background="#FFFF0404" Foreground="White" Click="deleteDriverBtn_Click">Удалить</Button>
+            <Button Grid.Column="2" x:Name="saveDriverBtn" Margin="10,10,10,10" Click="saveDriverBtn_Click">Сохранить</Button>
         </Grid>
     </Grid>
 </Window>
