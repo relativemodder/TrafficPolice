@@ -50,6 +50,12 @@ namespace TrafficPolice
             return driversList;
         }
 
+        public static void UpdateDriver(DriverModel driver)
+        {
+            var conn = GetSQLiteConnection();
+            conn.Update(driver);
+        }
+
         public static void CreateDefaultUser()
         {
             try
@@ -142,6 +148,13 @@ namespace TrafficPolice
             db.Commit();
 
             return user.Guid;
+        }
+
+        public static PhotoModel GetPhoto(int id)
+        {
+            var db = GetSQLiteConnection();
+            var photoQuery = db.Table<PhotoModel>().Where(photo => photo.Id == id);
+            return photoQuery.FirstOrDefault();
         }
     }
 }

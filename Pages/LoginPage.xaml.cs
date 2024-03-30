@@ -8,7 +8,7 @@ namespace TrafficPolice
     public partial class LoginPage : Page
     {
         private const int defaultUserId = 208342350; // DONT DO LIKE THAT IN REAL PROJECTS PLEASE
-        private const bool skipLogin = true;
+        private const bool skipLogin = false;
 
         public LoginPage()
         {

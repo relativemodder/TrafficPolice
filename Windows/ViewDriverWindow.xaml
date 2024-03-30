@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrafficPolice"
         mc:Ignorable="d"
-        Title="Водитель" Height="450" Width="800">
+        Title="Водитель" Height="450" d:Height="2000" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -22,12 +22,111 @@
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="400"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
-                
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Фамилия</TextBlock>
+                    <TextBox x:Name="Surname" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Имя</TextBlock>
+                    <TextBox x:Name="Name" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Отчество</TextBlock>
+                    <TextBox x:Name="Middlename" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Паспорт</TextBlock>
+                    <TextBox x:Name="Passport" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Адрес регистрации</TextBlock>
+                    <TextBox x:Name="RegisterAddress" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Адрес проживания</TextBlock>
+                    <TextBox x:Name="LivingAddress" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Место работы</TextBlock>
+                    <TextBox x:Name="WorksAt" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Должность</TextBlock>
+                    <TextBox x:Name="WorksAs" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Номер телефона</TextBlock>
+                    <TextBox x:Name="PhoneNumber" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="9">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">E-mail</TextBlock>
+                    <TextBox x:Name="Email" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Фото</TextBlock>
+                    <Image x:Name="Photo" Grid.Column="1" Margin="0,10,10,10" MouseDown="Photo_onMouseDown"></Image>
+                </Grid>
+                <Grid Grid.Row="11">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="18">Замечания</TextBlock>
+                    <TextBox x:Name="Notes" Grid.Column="1" Margin="0,5,5,5" Padding="10,0,10,0" FontSize="18" VerticalContentAlignment="Center"></TextBox>
+                </Grid>
             </Grid>
         </ScrollViewer>
         <Grid Grid.Row="1">
-            <Button HorizontalAlignment="Right" Width="200" Margin="0,10,10,10">Сохранить</Button>
+            <Button x:Name="saveDriverBtn" HorizontalAlignment="Right" Width="200" Margin="0,10,10,10" Click="saveDriverBtn_Click">Сохранить</Button>
         </Grid>
     </Grid>
 </Window>

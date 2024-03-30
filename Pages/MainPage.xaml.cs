@@ -48,6 +48,12 @@ namespace TrafficPolice
         {
             var viewDriverWindow = new ViewDriverWindow(driver);
             viewDriverWindow.Show();
+            viewDriverWindow.Closed += ViewDriverWindow_Closed;
+        }
+
+        private void ViewDriverWindow_Closed(object? sender, EventArgs e)
+        {
+            ReloadDriversList();
         }
 
         private void createDriverBtn_onClick(object sender, RoutedEventArgs e)
