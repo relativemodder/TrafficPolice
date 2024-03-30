@@ -46,7 +46,8 @@ namespace TrafficPolice
 
         private void DriverListElement_Select(DriverModel driver)
         {
-            MessageBox.Show(driver.ToString());
+            var viewDriverWindow = new ViewDriverWindow(driver);
+            viewDriverWindow.Show();
         }
 
         private void createDriverBtn_onClick(object sender, RoutedEventArgs e)
